@@ -1,0 +1,21 @@
+server:
+  port: 9090
+
+spring:
+  datasource:
+    username: sif
+    password: password
+    url: jdbc:postgresql://localhost:5432/sms_db
+  jpa:
+    database: postgresql
+    hibernate:
+      ddl-auto: update
+  data:
+    redis:
+      username: sif
+      password: password
+  rabbitmq:
+    username: sif
+    password: password
+    host: localhost
+
