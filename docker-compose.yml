@@ -1,0 +1,40 @@
+services:
+  postgres:
+    image: postgres:latest
+    container_name: spring_postgres
+    ports:
+      - '5432:5432'
+    environment:
+      POSTGRES_USER: sif
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: sms_db
+    networks:
+      - spring-net
+
+
+  redis:
+    image: redis:latest
+    container_name: spring_redis
+    networks:
+      - spring-net
+
+  rabbitmq:
+    image: rabbitmq:3-management-alpine
+    container_name: spring_rabbitmq
+    environment:
+      RABBITMQ_DEFAULT_USER: sif
+      RABBITMQ_DEFAULT_PASS: password
+    ports:
+      - '15672:15672'
+      - '5672:5672'
+    networks:
+      - spring-net
+
+
+networks:
+  spring-net:
+    driver: bridge
+volumes:
+  spring-data:
+    driver: local
+
